@@ -8,20 +8,20 @@ export class StringValueGenerator extends IValueGenerator<String> {
         let maxLength = 0;
         let schema = this.schema as StringSchema;
 
-        if (schema.example != undefined) {
+        if (schema.example !== undefined) {
             return schema.example;
         }
 
-        if (schema.pattern != undefined) {
+        if (schema.pattern !== undefined) {
             let regex = new RandExp(schema.pattern);
             return regex.gen();
         }
 
-        if (schema.minLength != undefined) {
+        if (schema.minLength !== undefined) {
             minLength = schema.minLength > minLength ? schema.minLength : 1;
         }
 
-        if (schema.maxLength != undefined) {
+        if (schema.maxLength !== undefined) {
             maxLength = schema.maxLength > maxLength ? schema.maxLength : minLength;
         }
         return StringValueGenerator.generateString(minLength, maxLength);

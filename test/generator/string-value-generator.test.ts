@@ -40,6 +40,6 @@ describe("should validate string-value-generator", () => {
 
     it("should consider maxLength when provided", () => {
         const response = _invokeGenerator({maxLength: 4});
-        expect(response.length).toBeLessThan(4);
+        expect(response.length).toBeLessThanOrEqual(4);
     });
 });
