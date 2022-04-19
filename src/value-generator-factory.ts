@@ -1,7 +1,7 @@
 import {StringValueGenerator} from "./generator/string-value-generator";
 import {StringSchema} from "./schema/StringSchema";
 
-export class ValueGeneratorFactory {
+class ValueGeneratorFactory {
     public parseSchema(properties: Object) {
         let result = new Map();
         Object.keys(properties).forEach((ppty) => {
@@ -22,3 +22,5 @@ export class ValueGeneratorFactory {
         return result;
     }
 }
+
+export default new ValueGeneratorFactory();

@@ -1,7 +1,5 @@
-import {ValueGeneratorFactory} from "../src/value-generator-factory";
-
+import factory from '../src/value-generator-factory';
 describe('value-generator-factory tests', () => {
-    let factory = new ValueGeneratorFactory();
 
     function _invokeGenerator(parameters: Object) {
         return factory.parseSchema(parameters);
