@@ -4,7 +4,7 @@ import { IntegerSchema } from "../../src/schema/integerSchema";
 describe("should validate integer-value-generator", () => {
     function _invokeGenerator(input?: Partial<IntegerSchema>) {
         const defaultParameters: IntegerSchema = {
-            type: "string",
+            type: "integer",
         };
         const generator = new IntegerValueGenerator({
             ...defaultParameters,

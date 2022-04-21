@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "clean": "rm -r dist",
     "test": "tsc && jest",
+    "mocha": "mocha --recursive --reporter mocha-junit-reporter --timeout 60000 --exit 'tests/**/*.ts'",
     "start": "tsc && node dist/src/index.js",
     "lint": "eslint . --ext .ts"
   },

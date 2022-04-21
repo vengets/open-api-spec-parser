@@ -1,5 +1,5 @@
 import {Schema} from "./schema";
 
 export class ArraySchema extends Schema {
-    items?: [Object];
+    items?: Map<any, any>;
 }

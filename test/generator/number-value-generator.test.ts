@@ -1,10 +1,10 @@
 import { NumberValueGenerator } from "../../src/generator/number-value-generator";
 import { NumberSchema } from "../../src/schema/numberSchema";
 
-describe.only('should validate number-value-generator', () => {
+describe('should validate number-value-generator', () => {
     function _invokeGenerator(input?: Partial<NumberSchema>) {
         const defaultParameters: NumberSchema = {
-            type: "string",
+            type: "number",
         };
         const generator = new NumberValueGenerator({
             ...defaultParameters,
@@ -16,7 +16,6 @@ describe.only('should validate number-value-generator', () => {
     it("should return single character string when called with no parameters", () => {
         const response = _invokeGenerator();
         expect(response).toBe(42);
-        expect(typeof(response)).toBe(typeof(1));
     });
 
     it("should consider minimum value attribute", () => {
