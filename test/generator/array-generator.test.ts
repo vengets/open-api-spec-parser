@@ -19,8 +19,8 @@ describe('should validate number-value-generator', () => {
           }
     );
     console.log(JSON.stringify(response));
-        // expect(response).toBe([42]);
-        // expect(typeof(response)).toBe(typeof(1));
+        // expect(response).to.equal([42]);
+        // expect(typeof(response)).to.equal(typeof(1));
     });
 
 });

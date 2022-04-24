@@ -1,3 +1,4 @@
+import { NotImplementedException } from "./error/not-implemented-exception";
 import { ArrayGenerator } from "./generator/array-generator";
 import { IntegerValueGenerator } from "./generator/integer-value-generator";
 import { NumberValueGenerator } from "./generator/number-value-generator";
@@ -10,7 +11,6 @@ import {StringSchema} from "./schema/StringSchema";
 class ValueGeneratorFactory {
     public parseSchema(properties: Object) {
         let result = new Map();
-        console.log(JSON.stringify(properties));
         Object.keys(properties).forEach((ppty) => {
             let type: string = properties[ppty]?.type;
             let generatedValue;
