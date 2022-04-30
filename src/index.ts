@@ -1,13 +1,13 @@
-import { StringSchema } from "./schema/StringSchema";
 
+import { log } from "./util/logger";
 import petstore from "./data/pet-store.json";
 import factory from "./value-generator-factory";
 
 export function main() {
   const stringProperties =
     petstore.components.schemas["StringSchema"].properties;
-  const stringValues = factory.parseSchema(stringProperties);
-  console.log(
+  const stringValues = factory.parseSchemaInObject(stringProperties);
+  log.silly(
     `Parsing stringProperties ${JSON.stringify(
       stringProperties,
       null,
@@ -38,7 +38,7 @@ export function main() {
       },
     ];
 
-    console.log(` Type is ==${typeof arrayOfSchema}== ${Array.isArray(arrayOfSchema)}`);
+    log.info(` Type is ==${typeof arrayOfSchema}== ${Array.isArray(arrayOfSchema)}`);
 
 
   return true;

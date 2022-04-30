@@ -4,7 +4,7 @@ import { expect } from "chai";
 describe('value-generator-factory tests', () => {
 
     function _invokeGenerator(parameters: Object) {
-        return factory.parseSchema(parameters);
+        return factory.parseSchemaInObject(parameters);
     }
 
     it('should call string value generator when type is string', () => {
@@ -43,27 +43,34 @@ describe('value-generator-factory tests', () => {
                 "type": "string",
                 "minLength": "5"
             }
-            // ,
-            // "age": {
-            //     "type": "number",
-            //     "minimum": "18",
-            //     "multipleOf": "3"
+            ,
+            "age": {
+                "type": "number",
+                "minimum": 17,
+                "multipleOf": 3
 
-            // },
-            // "month": {
-            //     "type": "number",
-            //     "exclusiveMaximum": "31"
-            // },
-            // "day": {
-            //     "type": "integer"
-            // }
+            },
+            "voting-age": {
+                "type": "number",
+                "exclusiveMinimum": 18,
+                "multipleOf": 3
+
+            },
+            "month": {
+                "type": "number",
+                "exclusiveMaximum": "31"
+            },
+            "day": {
+                "type": "integer"
+            }
         };
 
         const result: Map<string, string> = _invokeGenerator(properties);
-
         expect(result.get('firstName').length).to.greaterThanOrEqual(5);
-        // expect(result.get('age')).to.greaterThanOrEqual(18);
-        // expect(result.get('month')).to.lessThan(31);
-        // expect(typeof result.get('day')).to.equal(typeof 1);
+        expect(result.get('age')).to.greaterThanOrEqual(18);
+        expect(result.get('voting-age')).to.equal(21);
+        expect(Number.parseInt(result.get('voting-age'))%3).to.equal(0);
+        expect(result.get('month')).to.lessThan(31);
+        expect(typeof result.get('day')).to.equal(typeof 1);
     })
 });

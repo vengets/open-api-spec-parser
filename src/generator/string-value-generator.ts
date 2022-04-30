@@ -1,9 +1,12 @@
 const RandExp = require("randexp");
 import {StringSchema} from "../schema/StringSchema";
 import {IValueGenerator} from "./value-generator";
+import { log } from "../util/logger";
 
+const logger = log.getChildLogger({ name: 'StringValueGenerator'});
 export class StringValueGenerator extends IValueGenerator<String> {
     generate(): String {
+        logger.debug(`${JSON.stringify(this.schema)}`);
         let minLength = 1;
         let maxLength = 0;
         let schema = this.schema as StringSchema;

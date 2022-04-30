@@ -1,8 +1,11 @@
 import { NumberSchema } from "../schema/numberSchema";
 import { IValueGenerator } from "./value-generator";
+import { log } from "../util/logger";
 
+const logger = log.getChildLogger({ name: 'NumberValueGenerator'});
 export class NumberValueGenerator extends IValueGenerator<number> {
     generate(): number {
+        logger.debug(`${JSON.stringify(this.schema)}`);
         let schema = this.schema as NumberSchema;
 
         if (schema.example !== undefined) {
@@ -13,10 +16,10 @@ export class NumberValueGenerator extends IValueGenerator<number> {
         let min = schema.minimum || schema.exclusiveMinimum;
         if(schema.exclusiveMaximum !== undefined) max = max-1;
         if(schema.exclusiveMinimum !== undefined) min = min+1;
-        
+
         if(schema.multipleOf !== undefined) {
             if(min !== undefined && schema.multipleOf < min) {
-                let minMultiplier = Math.floor(min/schema.multipleOf)+ 1;
+                let minMultiplier = Math.floor(min/schema.multipleOf) + 1;
                 return minMultiplier * schema.multipleOf; 
             }
             return schema.multipleOf;
