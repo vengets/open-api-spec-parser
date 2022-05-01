@@ -1,3 +1,4 @@
+import { Logger } from "tslog";
 import { NotImplementedException } from "./error/not-implemented-exception";
 import { ArrayGenerator } from "./generator/array-generator";
 import { IntegerValueGenerator } from "./generator/integer-value-generator";
@@ -8,11 +9,13 @@ import { IntegerSchema } from "./schema/IntegerSchema";
 import { NumberSchema } from "./schema/numberSchema";
 import { Schema } from "./schema/schema";
 import {StringSchema} from "./schema/StringSchema";
+import { log } from "./util/logger";
 
+const logger = log.getChildLogger({ name: 'ValueGeneratorFactory'});
 class ValueGeneratorFactory {
 
     public parseSchema(schema: Schema) {
-
+        logger.debug(`${JSON.stringify(schema)}`);
         let type: string = schema?.type;
             let generatedValue;
             switch (type) {
@@ -45,10 +48,12 @@ class ValueGeneratorFactory {
     }
 
     public parseSchemaInObject(properties: Object) {
-        let result = new Map();
+        logger.debug(`${JSON.stringify(properties)}`);
+        let result;
         Object.keys(properties).forEach((ppty) => {
-            let type: string = properties[ppty]?.type;
+            let type: string = properties[ppty];
             let generatedValue;
+            logger.info(`Parsing ${ppty} ${type}`);
             switch (type) {
                 case "string":
                     generatedValue = new StringValueGenerator(
@@ -75,8 +80,10 @@ class ValueGeneratorFactory {
                         "IntegerValueGenerator not implemented"
                     );
             }
+            logger.debug(`Generated value ${generatedValue}`);
             result.set(ppty, generatedValue);
         });
+
         return result;
     }
 }
