@@ -8,7 +8,7 @@ export class ArrayGenerator extends IValueGenerator<[any]> {
     generate(): [any] {
         logger.debug(`${JSON.stringify(this.schema)}`);
         let schemas = this.schema as ArraySchema;
-        let values = valueGeneratorFactory.parseSchemaInObject(schemas.items);
+        let values = valueGeneratorFactory.parseSingleSchemaElement(schemas.items);
         logger.debug(`Returning ${values}`);
         return [values];
     }

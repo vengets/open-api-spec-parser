@@ -1,14 +1,13 @@
 import factory from '../src/value-generator-factory';
-import { expect } from "chai";
+import {expect} from "chai";
 
 describe('value-generator-factory tests', () => {
 
     function _invokeGenerator(parameters: Object) {
-        return factory.parseSchemaInObject(parameters);
+        return factory.parseSchemas(parameters);
     }
 
     it('should call string value generator when type is string', () => {
-
         const properties = {
             "firstName": {
                 "type": "string",
@@ -29,7 +28,6 @@ describe('value-generator-factory tests', () => {
         };
 
         const result: Map<string, string> = _invokeGenerator(properties);
-
         expect(result.get('firstName').length).to.greaterThanOrEqual(5);
         expect(result.get('lastName').length).to.lessThanOrEqual(8);
         expect(result.get('city')).to.equal('Bangalore');
@@ -37,7 +35,6 @@ describe('value-generator-factory tests', () => {
     })
 
     it('should call string, number and integer value generator when type is string', () => {
-
         const properties = {
             "firstName": {
                 "type": "string",
@@ -62,6 +59,12 @@ describe('value-generator-factory tests', () => {
             },
             "day": {
                 "type": "integer"
+            },
+            "someNumbers": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
             }
         };
 
@@ -69,8 +72,9 @@ describe('value-generator-factory tests', () => {
         expect(result.get('firstName').length).to.greaterThanOrEqual(5);
         expect(result.get('age')).to.greaterThanOrEqual(18);
         expect(result.get('voting-age')).to.equal(21);
-        expect(Number.parseInt(result.get('voting-age'))%3).to.equal(0);
+        expect(Number.parseInt(result.get('voting-age')) % 3).to.equal(0);
         expect(result.get('month')).to.lessThan(31);
         expect(typeof result.get('day')).to.equal(typeof 1);
+        expect(result.get('someNumbers')[0]).to.equal(42);
     })
 });

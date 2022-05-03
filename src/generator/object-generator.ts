@@ -10,7 +10,7 @@ export class ObjectGenerator extends IValueGenerator<Object> {
         const keys = Object.keys(schema);
         let result = new Map();
         keys.forEach(key => {
-            result.set(key, valueGeneratorFactory.parseSchemaInObject(schema[key]));
+            result.set(key, valueGeneratorFactory.parseSchemas(schema[key]));
         });
         return result;
     }

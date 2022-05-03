@@ -6,7 +6,7 @@ import factory from "./value-generator-factory";
 export function main() {
   const stringProperties =
     petstore.components.schemas["StringSchema"].properties;
-  const stringValues = factory.parseSchemaInObject(stringProperties);
+  const stringValues = factory.parseSchemas(stringProperties);
   log.silly(
     `Parsing stringProperties ${JSON.stringify(
       stringProperties,
