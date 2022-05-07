@@ -20,6 +20,14 @@ export class StringValueGenerator extends IValueGenerator<String> {
             return regex.gen();
         }
 
+        if(schema.format !== undefined) {
+            switch(schema.format.toLowerCase()) {
+                case 'date': return '2022-02-04';
+                case 'date-time': return '2022-02-04T17:32:28Z';
+                case 'byte': return 'U3dhZ2dlciByb2Nrcw==';
+            }
+        }
+
         if (schema.minLength !== undefined) {
             minLength = schema.minLength > minLength ? schema.minLength : 1;
         }

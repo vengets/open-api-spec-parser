@@ -1,4 +1,4 @@
 export class Schema {
-    type: string
+    type?: string
     example?: string
 }

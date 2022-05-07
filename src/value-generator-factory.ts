@@ -1,12 +1,13 @@
-import {Logger} from "tslog";
-import {NotImplementedException} from "./error/not-implemented-exception";
+// import {Logger} from "tslog";
 import {ArrayGenerator} from "./generator/array-generator";
 import {IntegerValueGenerator} from "./generator/integer-value-generator";
 import {NumberValueGenerator} from "./generator/number-value-generator";
+import { ObjectGenerator } from "./generator/object-generator";
 import {StringValueGenerator} from "./generator/string-value-generator";
 import {ArraySchema} from "./schema/arraySchema";
 import {IntegerSchema} from "./schema/IntegerSchema";
 import {NumberSchema} from "./schema/numberSchema";
+import { ObjectSchema } from "./schema/objectSchema";
 import {Schema} from "./schema/schema";
 import {StringSchema} from "./schema/StringSchema";
 import {log} from "./util/logger";
@@ -31,6 +32,9 @@ class ValueGeneratorFactory {
     public parseSingleSchemaElement(properties: Object) {
         logger.debug(`${JSON.stringify(properties)}`);
         let ppty = 'type';
+        if(properties[ppty] === undefined) {
+            if(properties['$ref'])
+        }
         let type: string = properties[ppty];
         let generatedValue;
         logger.info(`Parsing ${ppty} ${type}`);
@@ -56,9 +60,10 @@ class ValueGeneratorFactory {
                 ).generate();
                 break;
             case "object":
-                throw new NotImplementedException(
-                    "IntegerValueGenerator not implemented"
-                );
+                generatedValue = new ObjectGenerator(
+                    properties as ObjectSchema
+                ).generate();
+                break;
         }
         logger.debug(`Generated value ${generatedValue}`);
         return generatedValue;

@@ -7,6 +7,9 @@ export class IntegerValueGenerator extends IValueGenerator<number> {
     generate(): number {
         logger.debug(`${JSON.stringify(this.schema)}`);
         let schema = this.schema as IntegerSchema;
+        if (schema.example !== undefined) {
+            return Number.parseInt(schema.example);
+        }
         return 42;
     }
     
