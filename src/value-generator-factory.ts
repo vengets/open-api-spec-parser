@@ -17,7 +17,7 @@ const logger = log.getChildLogger({name: 'ValueGeneratorFactory'});
 class ValueGeneratorFactory {
 
     public parseSchemas(schemas: Object) {
-        let result: Map<string, string> = new Map<string, string>();
+        let result: Map<string, object> = new Map<string, object>();
         Object.keys(schemas).forEach(key => {
             let schema = schemas[key] as Schema;
             logger.debug(`${JSON.stringify(schema)}`);
@@ -33,7 +33,7 @@ class ValueGeneratorFactory {
         logger.debug(`${JSON.stringify(properties)}`);
         let ppty = 'type';
         if(properties[ppty] === undefined) {
-            if(properties['$ref'])
+            // if(properties['$ref'])
         }
         let type: string = properties[ppty];
         let generatedValue;

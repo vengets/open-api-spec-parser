@@ -5,10 +5,10 @@ import {ObjectSchema} from "../schema/objectSchema";
 
 const logger = log.getChildLogger({ name: 'ObjectGenerator'});
 export class ObjectGenerator extends IValueGenerator<Object> {
-    generate(): Object {
+    generate(): Map<string, object> {
         logger.debug(`${JSON.stringify(this.schema)}`);
         let schema = this.schema as ObjectSchema;
-        let result = new Map();
+        let result = new Map<string, object>();
         if(schema.properties) {
             const keys = Object.keys(schema.properties);
 
