@@ -33,6 +33,9 @@ class ValueGeneratorFactory {
 
   public parseSingleSchemaElement(properties: Object) {
     logger.debug(`${JSON.stringify(properties)}`);
+    if(!properties['type'] && properties['content'] && properties['content']['application/json'] && properties['content']['application/json']['schema']) {
+      properties = properties['content']['application/json']['schema'];
+    }
     let ppty = "type";
       let type: string = properties[ppty];
       let generatedValue;

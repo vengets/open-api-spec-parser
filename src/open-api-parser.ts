@@ -14,8 +14,8 @@ export class OpenApiParser {
         this.isFlattened = false;
     }
 
-    private flattenReferences(jsonString: string) {
-        let paths = [].concat(...OpenApiParser.getRefsPath(JSON.parse(JSON.stringify(this.openapispec))));
+    private flattenReferences() {
+        let paths = [].concat(...OpenApiParser.getRefsPath(this.openapispec));
 
         console.log(`RESPONSE = ${paths.length}`);
         while (paths.length > 0) {
@@ -32,9 +32,9 @@ export class OpenApiParser {
         console.log('TEST=======' + JSON.stringify(this.openapispec));
     }
 
-    public generateObjectFromSchema(schemaPath: string) {
-        if(!this.isFlattened) this.flattenReferences(JSON.stringify(this.openapispec));
-        const jsonObject = this.getJsonFromPath(schemaPath, '/');
+    public generateObjectFromSchema(schemaPath: string, separator: string = '/') {
+        if(!this.isFlattened) this.flattenReferences();
+        const jsonObject = this.getJsonFromPath(schemaPath, separator);
         const generatedObject = valueGeneratorFactory.parseSingleSchemaElement(jsonObject);
         if(generatedObject instanceof Map) {
             return DataUtil.convertMapToObject(generatedObject);
@@ -63,6 +63,10 @@ export class OpenApiParser {
 
     private static getRefsPath(json: JSON, path = []) {
         let result = [];
+        if(!json) {
+            logger.debug(`Skipping getRefsPath`);
+            return result;
+        }
         Object.keys(json).forEach(function (prop) {
             if (prop == '$ref') {
                 console.log('TEST');
