@@ -1,6 +1,7 @@
-# open-api-spec-parser
 
+# open-api-spec-parser <img src="https://raw.githubusercontent.com/vengets/open-api-spec-parser/main/images/banner.png" width=500 height=250 aligh=right>
 This parser generates the sample request object for the requested api, by parsing the Open Api Specification json file.
+
 
 ## Usage
 
