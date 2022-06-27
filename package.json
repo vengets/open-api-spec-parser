@@ -1,8 +1,9 @@
 {
   "name": "open-api-spec-parser",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This parser generates the sample request object for the requested api, by parsing the Open Api Specification json file.",
+  "main": "dist/src/index.js",
+  "bin": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "clean": "rm -r dist",
@@ -10,9 +11,18 @@
     "start": "tsc && node dist/src/index.js",
     "lint": "eslint . --ext .ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "swagger",
+    "open api specification",
+    "json",
+    "typescript"
+  ],
+  "author": "Venkatesh K <vengets@gmail.com>",
+  "repository": {
+    "url": "https://github.com/vengets/open-api-spec-parser.git",
+    "type": "git"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.1.1",
@@ -23,5 +33,6 @@
   "dependencies": {
     "randexp": "^0.5.3",
     "tslog": "^3.3.3"
-  }
+  },
+  "homepage": "https://github.com/vengets/open-api-spec-parser#readme"
 }
