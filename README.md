@@ -153,6 +153,6 @@ Output:
   "tags": [
     {}
   ],
-  "status": "a"
+  "status": "available"
 }
 ```

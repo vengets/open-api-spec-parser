@@ -28,6 +28,10 @@ export class StringValueGenerator extends IValueGenerator<String> {
             }
         }
 
+        if(schema.enum != undefined && schema.enum.length > 0) {
+            return schema.enum[0];
+        }
+
         if (schema.minLength !== undefined) {
             minLength = schema.minLength > minLength ? schema.minLength : 1;
         }

@@ -5,4 +5,5 @@ export class StringSchema extends Schema {
     minLength?: number;
     maxLength?: number;
     pattern?: string;
+    enum?: string[];
 }

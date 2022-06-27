@@ -11,7 +11,7 @@ export function main() {
     logger.info('Starting the parser!');
     const parser = new OpenApiParser(JSON.stringify(petstore));
     
-    const response = parser.generateObjectFromSchema("#/components/schemas/Pet");
+    const response = parser.generateObjectFromSchema("#/definitions/Pet");
     console.log(`RESPONSE = ${JSON.stringify(response)}`);
 
     return true;

@@ -17,7 +17,6 @@ export class OpenApiParser {
     private flattenReferences() {
         let paths = [].concat(...OpenApiParser.getRefsPath(this.openapispec));
 
-        console.log(`RESPONSE = ${paths.length}`);
         while (paths.length > 0) {
             paths.forEach(path => {
                 let p = (this.getJsonFromPath(path, refSeparator));
@@ -29,7 +28,6 @@ export class OpenApiParser {
             paths = [].concat(...OpenApiParser.getRefsPath(JSON.parse(JSON.stringify(this.openapispec))));
         }
         this.isFlattened = true;
-        console.log('TEST=======' + JSON.stringify(this.openapispec));
     }
 
     public generateObjectFromSchema(schemaPath: string, separator: string = '/') {
