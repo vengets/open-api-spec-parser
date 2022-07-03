@@ -1,6 +1,6 @@
 {
   "name": "open-api-spec-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This parser generates the sample request object for the requested api, by parsing the Open Api Specification json file.",
   "main": "dist/src/index.js",
   "bin": "dist/src/index.js",
