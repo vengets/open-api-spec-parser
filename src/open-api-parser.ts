@@ -30,6 +30,13 @@ export class OpenApiParser {
         this.isFlattened = true;
     }
 
+    public getSingleSchemaValue(schemaPath: string, separator: string = '/') {
+        if(!this.isFlattened) this.flattenReferences();
+        const jsonObject = this.getJsonFromPath(schemaPath, separator);
+        console.log(JSON.stringify(jsonObject));
+        return valueGeneratorFactory.parseSingleSchemaElement(jsonObject);
+    }
+
     public generateObjectFromSchema(schemaPath: string, separator: string = '/') {
         if(!this.isFlattened) this.flattenReferences();
         const jsonObject = this.getJsonFromPath(schemaPath, separator);

@@ -156,3 +156,37 @@ Output:
   "status": "available"
 }
 ```
+### Example 3:
+This example shows how to get query parameter value for GET endpoint(s).
+*petstore.json*
+```json 
+{
+  "swagger": "2.0",
+  "PageNumberQueryParam": {
+    "name": "page",
+    "in": "query",
+    "required": false,
+    "schema": {
+      "type": "number",
+      "default": 1,
+      "minimum": 1
+    },
+    "description": "Page number. Starts from 1."
+  }
+}
+
+```
+
+You can use OpenApiSpecParser object to parse and generate a sample ApiResponse as shown below:
+
+```javascript
+    const parser = new OpenApiParser(JSON.stringify(petstore));
+    const param = parser.getSingleSchemaValue("#/PageNumberQueryParam" + "/schema");
+    console.log(`PARAM = ${JSON.stringify(param)}`);
+```
+
+Output:
+
+``` 
+PARAM = 1
+```
