@@ -23,7 +23,6 @@ export class OpenApiParser {
                 const json = this.getJsonFromPath(p['$ref'], '/');
                 delete p['$ref'];
                 this.setJson(path, JSON.stringify(json));
-                console.log('== ' + path + ' = ' + p + ' : ' + JSON.stringify(json));
             });
             paths = [].concat(...OpenApiParser.getRefsPath(JSON.parse(JSON.stringify(this.openapispec))));
         }
@@ -33,7 +32,6 @@ export class OpenApiParser {
     public getSingleSchemaValue(schemaPath: string, separator: string = '/') {
         if(!this.isFlattened) this.flattenReferences();
         const jsonObject = this.getJsonFromPath(schemaPath, separator);
-        console.log(JSON.stringify(jsonObject));
         return valueGeneratorFactory.parseSingleSchemaElement(jsonObject);
     }
 
@@ -63,7 +61,6 @@ export class OpenApiParser {
         let leaf = path.substring(path.lastIndexOf(refSeparator) + 1);
         let parentObj = this.getJsonFromPath(parentObjPath, refSeparator);
         parentObj[leaf] = JSON.parse(jsonString);
-        console.log(`UPDATED =  ${parentObjPath} & (${leaf})`);
     }
 
     private static getRefsPath(json: JSON, path = []) {
@@ -74,7 +71,6 @@ export class OpenApiParser {
         }
         Object.keys(json).forEach(function (prop) {
             if (prop == '$ref') {
-                console.log('TEST');
                 result.push(path.join(refSeparator));
             }
             if (typeof json[prop] == 'object') {

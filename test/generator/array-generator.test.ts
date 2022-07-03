@@ -18,7 +18,6 @@ describe('should validate number-value-generator', () => {
             }
           }
     );
-        console.log(JSON.stringify(response));
         expect(response[0]).to.equal(42);
         expect(typeof(response[0])).to.equal(typeof(1));
     });
